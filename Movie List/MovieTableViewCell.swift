@@ -8,15 +8,37 @@
 
 import UIKit
 
+protocol UpdateMovieStatusDelegate {
+    func updateMovieStatus(cell: MovieTableViewCell)
+}
+
 class MovieTableViewCell: UITableViewCell {
+   
     
-    @IBOutlet weak var movieTitleLabel: UILabel!
+    @IBOutlet weak var moviesLabel: UILabel!
+    @IBOutlet weak var seenButton: UIButton!
     
-    @IBAction func movieToggleButton(_ sender: UIButton) {
-    
+    var movie: Movie? {
+        didSet {
+            updateViews()
+        }
     }
     
+    var delegate: UpdateMovieStatusDelegate?
     
+    @IBAction func seenButtonTapped(_ sender: UIButton) {
+        delegate?.updateMovieStatus(cell: self)
+    }
+    
+    private func updateViews() {
+        guard let unwrappedMovie = movie else { return }
+        moviesLabel.text = unwrappedMovie.name
+        if unwrappedMovie.seen {
+            seenButton.setTitle("Seen", for: .normal)
+        } else {
+            seenButton.setTitle("Not Seen", for: .normal)
+        }
+    }
     
     
     override func awakeFromNib() {
@@ -29,5 +51,17 @@ class MovieTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+//
+  
+        
+        
+        
+
+        
+      
+        
+      
+    
+    
 
 }

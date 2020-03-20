@@ -9,7 +9,16 @@
 import UIKit
 
 class MovieTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var movieTitleLabel: UILabel!
+    
+    @IBAction func movieToggleButton(_ sender: UIButton) {
+    
+    }
+    
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

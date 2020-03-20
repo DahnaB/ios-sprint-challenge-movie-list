@@ -9,6 +9,20 @@
 import UIKit
 
 class AddMoviesViewController: UIViewController {
+    
+    @IBOutlet weak var addMoviesTextField: UITextField!
+    
+    @IBAction func addMovieSave(_ sender: UIButton) {
+        
+        guard let movieText = addMoviesTextField.text else { return }
+        
+        let newMovie = Movie.init(title: movieText)
+        
+        
+        
+    }
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
